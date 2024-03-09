@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import rplogo from './images/rplogo.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
   const [postData, setPostData] = useState({
@@ -8,7 +10,21 @@ const App = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get('https://vercel-deploy-bb8k.onrender.com/api/mongodb-data');
+      setData(response.data.documents);
+    } catch (err) {
+      console.error('Error fetching data:', err);
+      setError('An error occurred while fetching data.');
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +37,12 @@ const App = () => {
     try {
       const response = await axios.post('https://vercel-deploy-bb8k.onrender.com/api/postmongodb-data', postData);
       console.log('Data posted successfully:', response.data);
-      if(response.data) {
-        const response = await axios.get('https://vercel-deploy-bb8k.onrender.com/api/mongodb-data')
-        console.log(response.data.documents);
-        setData(response.data.documents);
+      if (response.data) {
+        fetchData();
+        setPostData({
+          name : '',
+          number : ''
+        })
       }
       setError(null);
     } catch (err) {
@@ -35,34 +53,68 @@ const App = () => {
     }
   };
 
+
+  // const handleDelete = async (item) => {
+  //   console.log(item);
+  //   setLoading(true);
+  //   try {
+  //     const response = await axios.post('http://localhost:3100/api/deletemongodb-data', postData);
+  //     console.log('Data posted successfully:', response.data);
+  //     if (response.data) {
+  //       fetchData();
+  //     }
+  //     setError(null);
+  //   } catch (err) {
+  //     console.error('Error posting data:', err);
+  //     setError('An error occurred while posting data. Please try again later.');
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // }
+
   return (
     <div>
+      <div className='p-2'>
+        <img src={rplogo} alt='rplogo' width='70px' /> 
+      </div>
       <form onSubmit={handleSubmit}>
-        <label>
-          Name:
-          <input type="text" name="name" value={postData.name} onChange={handleChange} />
-        </label>
-        <br />
-        <label>
-          Number:
-          <input type="text" name="number" value={postData.number} onChange={handleChange} />
-        </label>
-        <br />
-        <button type="submit" disabled={loading}>Submit</button>
+        <div className='d-flex align-items-center'>
+          <div className='col-lg-2 fw-bold'>Employee Name:</div>
+          <div className='col-lg-2'>
+            <input className='form-control' type='text' name='name' value={postData.name} onChange={handleChange} />
+          </div>
+          <div className='col-lg-2 fw-bold ms-3'>Employee ID:</div>
+          <div className='col-lg-2'>
+            <input className='form-control' type='text' name='number' value={postData.number} onChange={handleChange} />
+          </div>
+          <div className='ms-3'>
+            <button type='submit' className='btn btn-primary' disabled={loading}>Add</button>
+          </div>
+        </div>
       </form>
       {error && <div>Error: {error}</div>}
-      {data.length > 0 && <table>
-        <tr>
-          <th>Employee Name</th>
-          <th>Emplyee id</th>
-        </tr>
-        {data.map((item, index) => (
-          <tr key={index}>
-          <td>{item.name}</td>
-          <td>{item.number}</td>
-          </tr>
-        )
-      )}</table>}
+      <div className='fw-bold mt-3 fs-4'>
+        Employees List
+      </div>
+      {data.length > 0 && 
+        <table className='table table-striped table-hover w-50'>
+          <thead>
+            <tr>
+              <th>Employee Name</th>
+              <th>Employee ID</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((item, index) => (
+              <tr key={index}>
+                <td>{item.name}</td>
+                <td>{item.number}</td>
+                {/* <td><button className='btn btn-danger' onClick={() => {handleDelete(item)}}>Delete</button></td> */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      }
     </div>
   );
 };
