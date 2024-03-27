@@ -18,8 +18,8 @@ const App = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://vercel-deploy-bb8k.onrender.com/api/mongodb-data');
-      setData(response.data.documents);
+      const response = await axios.get('https://vercel-deploy-bb8k.onrender.com/api/getdetails');
+      setData(response.data);
     } catch (err) {
       console.error('Error fetching data:', err);
       setError('An error occurred while fetching data.');
@@ -35,8 +35,8 @@ const App = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post('https://vercel-deploy-bb8k.onrender.com/api/postmongodb-data', postData);
-      console.log('Data posted successfully:', response.data);
+      const response = await axios.post('https://vercel-deploy-bb8k.onrender.com/api/insertData', postData);
+      console.log('Data posted successfully:', response.data.message);
       if (response.data) {
         fetchData();
         setPostData({
@@ -54,22 +54,22 @@ const App = () => {
   };
 
 
-  // const handleDelete = async (id) => {
-  //   setLoading(true);
-  //   try {
-  //     const response = await axios.delete(`http://localhost:3001/api/deleteData/${id}`);
-  //     console.log('Data deleted successfully:', response.data);
-  //     if (response.data) {
-  //       fetchData();
-  //     }
-  //     setError(null);
-  //   } catch (err) {
-  //     console.error('Error posting data:', err);
-  //     setError('An error occurred while posting data. Please try again later.');
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // }
+  const handleDelete = async (id) => {
+    setLoading(true);
+    try {
+      const response = await axios.delete(`http://localhost:3001/api/deleteData/${id}`);
+      console.log('Data deleted successfully:', response.data);
+      if (response.data) {
+        fetchData();
+      }
+      setError(null);
+    } catch (err) {
+      console.error('Error posting data:', err);
+      setError('An error occurred while posting data. Please try again later.');
+    } finally {
+      setLoading(false);
+    }
+  }
 
   return (
     <div>
@@ -101,7 +101,7 @@ const App = () => {
             <tr>
               <th>Employee Name</th>
               <th>Employee ID</th>
-              {/* <th>Actions</th> */}
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -109,7 +109,7 @@ const App = () => {
               <tr key={index}>
                 <td>{item.name}</td>
                 <td>{item.number}</td>
-                {/* <td><button className='btn btn-danger' onClick={() => {handleDelete(item._id)}}>Delete</button></td> */}
+                <td><button className='btn btn-danger' onClick={() => {handleDelete(item._id)}}>Delete</button></td>
               </tr>
             ))}
           </tbody>
