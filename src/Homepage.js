@@ -472,15 +472,6 @@ if (emailParts.length !== 2 || emailParts[1] !== 'gmail.com') {
 
         
       </div>
-      {showSuccessMessage && (
-        <div className="loginsuccess-message mx-3">
-          <Dialog open={showSuccessMessage} className=' position-absolute d-flex flex-column'>
-            <DialogContent className='px-5 py-3'><div className='text-center'><i className="fa-solid fa-circle-check fa-5x text-success"></i></div>
-              <div className='text-center text-secondary h3'>Success</div>
-              <div className='text-secondary'>Your data has been successfully submitted.</div></DialogContent>
-          </Dialog>
-        </div>
-      )}
     </div>
   );
 }
