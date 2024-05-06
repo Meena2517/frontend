@@ -7,8 +7,6 @@ import axios from 'axios';
 import 'animate.css';
 import { motion, useInView  } from "framer-motion";
 import Loginloading from './Loginloading';
-import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
 import PopUpMessage from './PopUpMessage';
 
 
