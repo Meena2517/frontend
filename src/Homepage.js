@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './homepage.css';
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Screenshot1 from './images/LaptopwithLoginPage.png'
 import ContactImg from './images/contactImg.png';
 import axios from 'axios';
@@ -20,8 +20,6 @@ const Homepage = () => {
   const [loading ,setLoading] = useState(false)
 
   const [scrollProgress, setScrollProgress] = useState(0);
-
-  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
 useEffect(() => {
   const handleScroll = () => {
