@@ -170,7 +170,7 @@ th,td {
 
 
 .loginpage {
-  background-image: url(./images/loginbackground.jpg);
+  /* background-image: url(./images/loginbackground.jpg); */
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -179,7 +179,7 @@ th,td {
 }
 
 .EmployeeDetails {
-  background-image: url(./images/empoyeedetails.webp);
+  /* background-image: url(./images/empoyeedetails.webp); */
   background-repeat: no-repeat;
   background-position: center;
   background-size:cover;

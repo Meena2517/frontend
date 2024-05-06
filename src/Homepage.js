@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import './homepage.css';
 import { Link, useNavigate } from 'react-router-dom'
 import Screenshot1 from './images/LaptopwithLoginPage.png'
-import myImage from './images/myPhoto1.jpg'
 import ContactImg from './images/contactImg.png';
 import axios from 'axios';
 import 'animate.css';
@@ -226,9 +225,6 @@ if (emailParts.length !== 2 || emailParts[1] !== 'gmail.com') {
         <div className='text-white container-fluid p-0'>
           <div className=' p-lg-5 p-md-5'>
     <div className='row m-0'>
-        <div className='col-sm-6 onlyMobile text-center'>
-        <img src={myImage} alt='Revanth Patnani' className='img-thumbnail' style={{ borderRadius: '50%', height : '100px', width: '100px' }} />
-        </div>
         <div className='col-lg-12 text-center py-5'>
             <motion.div
                 className='name fw-bold col-lg-12 col-md-12'
@@ -397,6 +393,9 @@ if (emailParts.length !== 2 || emailParts[1] !== 'gmail.com') {
 
         <div className='container'>
             <div className='row m-0 d-flex align-items-center'>
+            <div className='col-lg-6'>
+                    <img src={ContactImg} alt='contact' className='img-fluid'/>
+                </div>
                 <div className="col-lg-6 px-lg-5">
       <form onSubmit={handleSubmit}>
         <div className="form-group mt-3">
