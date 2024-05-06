@@ -5,10 +5,9 @@ import Screenshot1 from './images/LaptopwithLoginPage.png'
 import ContactImg from './images/contactImg.png';
 import axios from 'axios';
 import 'animate.css';
-import { motion, useInView, useTransform  } from "framer-motion";
+import { motion, useInView  } from "framer-motion";
 import Loginloading from './Loginloading';
 import Dialog from '@mui/material/Dialog';
-import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import PopUpMessage from './PopUpMessage';
 
@@ -42,7 +41,7 @@ useEffect(() => {
 }, []);
 
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 //   document.addEventListener("scroll", function() {
 //     var scrollPosition = window.scrollY;
 //     var mouse = document.querySelector('.mouse');
@@ -176,9 +175,6 @@ if (emailParts.length !== 2 || emailParts[1] !== 'gmail.com') {
 
   const [showPopUp, setShowPopUp] = useState(false);
 
-  const handleAddSuccessfully = () => {
-    setShowPopUp(true);
-  };
 
   const handleClosePopUp = () => {
     setShowPopUp(false);
