@@ -142,7 +142,6 @@ const Loginpage = () => {
             .post(baseURL + "/smr/verifyotp", { email, otp: enteredOTP })
             .then((response) => {
                 if (response.data.status) {
-                    alert('valid otp')
                     updateLogindatas({otp : ['','','',''], showOtpInput : false, showInputFields: true})
                 } else {
                     alert('invalid otp')
@@ -307,7 +306,6 @@ const Loginpage = () => {
             const { email, enteredOTP } = logindatas;
             const response = await axios.post(baseURL + "/smr/Forgotverifyotp", { email, otp: enteredOTP });
             if (response.data.status) {
-                alert('valid otp');
                 updateLogindatas({otp : ['','','',''], showPasswordInput : true, showOtpInput : false})
             } else {
                 alert('invalid otp');
