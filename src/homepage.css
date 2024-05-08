@@ -354,6 +354,12 @@
   transition: width 0.3s ease;
 }
 
-
+.resumeblur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(6px); 
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+}
 
 

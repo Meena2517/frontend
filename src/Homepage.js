@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import './homepage.css';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Screenshot1 from './images/LaptopwithLoginPage.png'
 import ContactImg from './images/contactImg.png';
 import axios from 'axios';
@@ -37,7 +37,7 @@ useEffect(() => {
 }, []);
 
 
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 //   document.addEventListener("scroll", function() {
 //     var scrollPosition = window.scrollY;
 //     var mouse = document.querySelector('.mouse');
@@ -81,7 +81,7 @@ const demoProject = [
     demoContent1 : 'The platform offers a seamless user experience with its Login and Signup functionalities. Users can easily create an account or log in to access the full range of features. Upon authentication, individuals are swiftly directed to the central hub of the platform: the CRUD (Create, Read, Update, Delete) operation page.',
     demoContent2 : 'Here, users have the power to interact with their data in a dynamic and intuitive manner. Whether its creating new entries, retrieving existing information, updating records, or removing obsolete data, the CRUD operation page serves as the control center for managing user content efficiently.',
     buttonLink : '/LoginPage',
-    page : '/data'
+    page : '/Welcome'
   }
 ];
 
@@ -331,22 +331,6 @@ if (emailParts.length !== 2 || emailParts[1] !== 'gmail.com') {
           </div>
         </div>
 
-{/* 
-        <div className='container'>
-                <div className='row m-0 py-5'>
-                <div className='col-lg-6 position-relative'>
-    <img src={LaptopwithLoginPage} alt='LoginPage' className='img-fluid' />
-    <img src={Screenshot1} alt='LoginPage' className='img-fluid position-absolute top-0 start-0 ' style={{width : '370px', height: '217px' ,marginTop : '27px', marginLeft : '101px'}}  />
-</div>
-                  <div className='col-lg-6 text-white'> 
-                      <div className='pt-2'><h3 className='fw-bold'>LOGIN & CRUD Operation</h3></div>
-                      <div><p style={{textAlign : 'justify'}}>The platform offers a seamless user experience with its Login and Signup functionalities. Users can easily create an account or log in to access the full range of features. Upon authentication, individuals are swiftly directed to the central hub of the platform: the CRUD (Create, Read, Update, Delete) operation page.</p></div>
-                      <div><p style={{textAlign : 'justify'}}>Here, users have the power to interact with their data in a dynamic and intuitive manner. Whether it's creating new entries, retrieving existing information, updating records, or removing obsolete data, the CRUD operation page serves as the control center for managing user content efficiently.</p></div>
-                      <div className='text-center'><button className='btn text-white' style={{background : 'rgb(205,0,255)'}} onClick={(e) => {e.preventDefault();navigate('/LoginPage');}}>Open Link</button></div>
-                  </div>
-                </div>
-        </div> */}
-
         {
           demoProject.map((item, index) => (
             <div className='container' key={index}>
@@ -359,7 +343,7 @@ if (emailParts.length !== 2 || emailParts[1] !== 'gmail.com') {
                       <div className='pt-2'><h3 className='fw-bold textHeading1'>{item.demoHeading}</h3></div>
                       <div><p className='paragraph' style={{textAlign : 'justify'}}>{item.demoContent1}</p></div>
                       <div><p className='paragraph' style={{textAlign : 'justify'}}>{item.demoContent2}</p></div>
-                      {/* <div className='text-center'><button className='btn btn-lg btn-md btn-sm fw-bold btn-light mt-3' onClick={(e) => {e.preventDefault();localStorage.setItem('page',`${item.page}`);navigate(`${item.buttonLink}`);}}>PROJECT LINK</button></div> */}
+                      <div className='text-center'><button className='btn btn-lg btn-md btn-sm fw-bold btn-light mt-3' onClick={(e) => {e.preventDefault();localStorage.setItem('page',`${item.page}`);navigate(`${item.buttonLink}`);}}>PROJECT LINK</button></div>
                   </div>
                 </div>
         </div>
