@@ -9,6 +9,7 @@ import PopUpMessage from './PopUpMessage'
 
 const Loginpage = () => {
 
+    const baseURL = 'https://vercel-deploy-bb8k.onrender.com'
     const navigate = useNavigate();
     useEffect(() => {
         let logout = sessionStorage.getItem('LoggedIn');
@@ -99,7 +100,7 @@ const Loginpage = () => {
         if (emailmessage === '') {
             updateLogindatas({isLoading : true})
             try {
-                const response = await axios.post('http://localhost:3240/smr/sendotp', {
+                const response = await axios.post(baseURL + '/smr/sendotp', {
                     email: logindatas.email,
                 });
                 if (response.data.status) {
@@ -138,7 +139,7 @@ const Loginpage = () => {
     const handleVerifyOtp = () => {
         const { email, enteredOTP } = logindatas
         axios
-            .post("http://localhost:3240/smr/verifyotp", { email, otp: enteredOTP })
+            .post(baseURL + "/smr/verifyotp", { email, otp: enteredOTP })
             .then((response) => {
                 if (response.data.status) {
                     alert('valid otp')
@@ -155,7 +156,7 @@ const Loginpage = () => {
         const { username, email, password } = logindatas
         try {
             if (validateForm()) {
-                axios.post('http://localhost:3240/smr/signupdata', {
+                axios.post(baseURL + '/smr/signupdata', {
                     username: username,
                     email: email,
                     password: password,
@@ -239,7 +240,7 @@ const Loginpage = () => {
             console.log('Current time:', new Date());
             updateLogindatas({isLoading : true})
             try {
-                const response = await axios.post('http://localhost:3240/smr/checklogin', {
+                const response = await axios.post(baseURL + '/smr/checklogin', {
                     email: loginEmail,
                     password: loginPassword,
                 });
@@ -278,7 +279,7 @@ const Loginpage = () => {
         const { email } = logindatas;
         console.log(email);
         try {
-            const response = await axios.post('http://localhost:3240/smr/checkforgotpassword', {
+            const response = await axios.post(baseURL + '/smr/checkforgotpassword', {
                 email: email,
             });
             console.log(response.data.status);
@@ -304,7 +305,7 @@ const Loginpage = () => {
         updateLogindatas({isLoading : true})
         try {
             const { email, enteredOTP } = logindatas;
-            const response = await axios.post("http://localhost:3240/smr/Forgotverifyotp", { email, otp: enteredOTP });
+            const response = await axios.post(baseURL + "/smr/Forgotverifyotp", { email, otp: enteredOTP });
             if (response.data.status) {
                 alert('valid otp');
                 updateLogindatas({otp : ['','','',''], showPasswordInput : true, showOtpInput : false})
@@ -332,7 +333,7 @@ const Loginpage = () => {
             alert('Please enter a new password');
         }
         if (password && confirmpassword && password === confirmpassword && passwordValidations) {
-            axios.put(`http://localhost:3240/smr/updatesignupdata/${_id}`, { password })
+            axios.put(baseURL + `/smr/updatesignupdata/${_id}`, { password })
                 .then((response) => {
                     if (response.status === 200) {
                         // updateLogindatas({modalforgotpassword : true})

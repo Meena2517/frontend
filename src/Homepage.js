@@ -16,7 +16,7 @@ const Homepage = () => {
   const isInView = useInView(ref, { once: true });
   const isInViewAbout = useInView(refAbout, { once: true });
   const [loading ,setLoading] = useState(false)
-
+  const baseURL = 'https://vercel-deploy-bb8k.onrender.com'
   const [scrollProgress, setScrollProgress] = useState(0);
 
 useEffect(() => {
@@ -152,7 +152,7 @@ if (emailParts.length !== 2 || emailParts[1] !== 'gmail.com') {
     try {
       // Submit form data
       setLoading(true);
-      await axios.post('https://vercel-deploy-bb8k.onrender.com/smr/sendFeedback', formData);
+      await axios.post( baseURL + '/smr/sendFeedback', formData);
       console.log('Form submitted:', formData);
       // Clear form after successful submission if needed
       setFormData({
