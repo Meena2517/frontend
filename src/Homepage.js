@@ -186,12 +186,12 @@ if (emailParts.length !== 2 || emailParts[1] !== 'gmail.com') {
       {/* linear-gradient(to right, rgb(255,0,255), rgb(0,255,255)) */}
       <div class="container-fluid sticky-top p-0" style={{backgroundImage:'rgb(4,59,96)'}}>
         <div className='bgImagedark1'>
-         <nav className="navbar navbar-expand-lg navbar-light container-fluid">
+         <nav className="navbar navbar-expand-lg navbar-dark container-fluid">
           <div className="container-fluid">
             <a className="navbar-brand fw-bold text-white" style={{ fontSize: '14px' }} href="/">REVANTH PATNANI</a>
-            <button className="navbar-toggler" type="button" onClick={toggleNav}>
-              <span className="navbar-toggler-icon"></span>
-            </button>
+            <button class="navbar-toggler" type="button" onClick={toggleNav}>
+  <span class="navbar-toggler-icon"></span>
+</button>
             <div className={`collapse navbar-collapse justify-content-end me-lg-5 me-md-3 me-0 ${isNavOpen ? 'show' : ''}`} id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item mx-lg-4 mx-md-2 mx-1">
@@ -446,7 +446,7 @@ if (emailParts.length !== 2 || emailParts[1] !== 'gmail.com') {
                   </ul>
                   </div>
                 </div>
-                <p class="mb-0">&copy; Copyright 2024. Made by <Link className="fw-bold text-white text-decoration-none" onClick={(e) => {window.open('http://localhost:3000')}}>Revanth Patnani</Link></p>
+                <p class="mb-0">&copy; Copyright 2024. Made by <Link className="fw-bold text-white text-decoration-none" onClick={(e) => {window.open('http://revanthpatnani.netlify.app')}}>Revanth Patnani</Link></p>
             </div>
         </div>
     </div>
